@@ -8,27 +8,24 @@ class Solution:
         lo = 0
         hi = 0
         
-        while lo < len(nums):
-            if hi == len(nums):
-                cur_mul /= nums[lo]
-                lo += 1
-                
-                if cur_mul < k:
-                    res += 1
-                    print(lo, hi)
-            else:                
-                n = nums[hi]
-                
-                if cur_mul * n < k:
-                    res += 1
-                    hi += 1
-                    cur_mul *= n
-                    print(lo, hi)
+        while lo < len(nums) and hi < len(nums):              
+            n = nums[hi]
+            
+            if cur_mul * n < k:
+                print(lo, hi, "start")
+                res += 1
+                cur_mul *= n
+
+                if hi + 1 == len(nums) and not hi == lo:
+                    res += hi - lo + 1
+                    break
                 else:
-                    lo += 1
-                    hi = lo
-                    cur_mul = 1
+                    hi += 1
+            else:
+                lo += 1
+                hi = lo
+                cur_mul = 1
         
         return res
     
-print(Solution().numSubarrayProductLessThanK([10, 5, 2, 6], 100))
+print(Solution().numSubarrayProductLessThanK([10,5,2,6], 100))
