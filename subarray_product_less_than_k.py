@@ -26,7 +26,8 @@ class Solution:
                     print(lo, hi)
                 else:
                     lo += 1
-                    cur_mul /= n
+                    hi = lo
+                    cur_mul = 1
         
         return res
     
