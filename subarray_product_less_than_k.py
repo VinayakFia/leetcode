@@ -1,6 +1,6 @@
 from typing import List
 
-
+# solutions too slow / wrong
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
         res = 0
@@ -12,13 +12,14 @@ class Solution:
             n = nums[hi]
             
             if cur_mul * n < k:
-                print(lo, hi, "start")
+                print(lo, hi, nums[lo:hi + 1])
                 res += 1
                 cur_mul *= n
 
                 if hi + 1 == len(nums) and not hi == lo:
-                    res += hi - lo + 1
-                    break
+                    cur_mul = 1
+                    lo += 1
+                    hi = lo
                 else:
                     hi += 1
             else:
@@ -28,4 +29,4 @@ class Solution:
         
         return res
     
-print(Solution().numSubarrayProductLessThanK([10,5,2,6], 100))
+print(Solution().numSubarrayProductLessThanK([6,8,6,6,10,8,10,3,7,7,4,9,3,1], 121))
